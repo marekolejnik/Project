@@ -34,6 +34,13 @@ public class UserServiceTest {
     }
 
     @Test(expected = ServiceException.class)
+    public void createUser_with_short_username() throws Exception {
+        User user = new User(1l, "user");
+        userService.createUser(user);
+    }
+
+
+    @Test(expected = ServiceException.class)
     public void createUser_and_check_wrong_id() throws Exception {
         User user = new User(1l, "userLong");
         when(userDao.getUser(1l)).thenReturn(user);
