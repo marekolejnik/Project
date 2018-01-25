@@ -54,4 +54,23 @@ public class UserServiceTest {
         doThrow(new RuntimeException("User id cannot be null")).when(userDao).create(user);
         userService.createUser(user);
     }
+
+    @Test
+    public void delete_user() throws Exception {
+        User user = new User(1l,"marekTest");
+        when(userDao.getUser(1l)).thenReturn(user);
+        userService.createUser(user);
+        userService.deleteUser(1l);
+    }
+
+    @Test
+    public void get_all_users() throws Exception {
+        User user1 = new User(1l, "userLong1");
+        when(userDao.getUser(1l)).thenReturn(user1);
+        userService.createUser(user1);
+//        User user2 = new User(1l, "userLong2");
+//        when(userDao.getUser(2l)).thenReturn(user2);
+//        userService.createUser(user2);
+        userService.getAllUsers();
+    }
 }
